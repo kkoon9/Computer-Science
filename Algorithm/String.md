@@ -104,3 +104,15 @@ public class Main {
 - [출처](https://dreamhollic.tistory.com/entry/Programmers-%EC%99%84%EC%A0%84%ED%83%90%EC%83%89-%EC%86%8C%EC%88%98%EC%B0%BE%EA%B8%B0level-2)
 
 - - -
+
+## 숫자 야구 문제에서 배운 String
+### valueOf
+- String.valueOf(123) : Integer 123을 String 타입으로 바꾸어준다.
+
+### charAt
+- String.charAt(index) : String은 index 접근하려면 charAt을 사용해야한다.
+
+### contains
+- String.contains(char) : String 값에 char가 포함되어 있다면 true를 반환한다.
+
+- - -
