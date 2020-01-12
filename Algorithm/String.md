@@ -5,6 +5,8 @@
 - Integer.toString(int 변수) : Int to String
 - Integer.parseInt(String 변수) : String to Int
 
+- - -
+
 ## String 길이로 정렬
 - 보통 String을 sort할 때에는 알파벳 순으로 한다.
 ```java
@@ -29,6 +31,8 @@ class comp implements Comparator<String> {
 Arrays.sort(s1, new comp());
 // "cd", "abc", "aaqq"
 ```
+
+- - -
 
 ## 문자열 자르기
 ### 1. substring
@@ -70,3 +74,33 @@ System.out.println(array[i]);
 //array[3] = 4
 ```
 - [출처](https://coding-factory.tistory.com/126)
+
+- - -
+
+## String 값으로 있는 수로 만들 수 있는 순열 구하기
+- Programmers #42839 문제에서 사용
+```java
+public class Main {
+    static Set <Integer> hs = new HashSet<Integer>();
+    public static void main(String[] args) {
+        func("", "123");
+        for(Iterator i = ts.iterator(); i.hasNext();) {
+            System.out.println(i.next());
+        }
+    }
+    public static void func(String s, String number) {
+        if (number.length() == 0) {
+            if(!s.equals(""))
+                hs.add(Integer.parseInt(s));
+        } else {
+            for (int i = 0; i < number.length(); i++)
+                func(s + number.charAt(i), number.substring(0,i) + number.substring(i+1, number.length()));
+            for (int i = 0; i< number.length(); i++)
+                func(s, number.substring(0,i) + number.substring(i+1, number.length()));
+        }
+    }
+}
+```
+- [출처](https://dreamhollic.tistory.com/entry/Programmers-%EC%99%84%EC%A0%84%ED%83%90%EC%83%89-%EC%86%8C%EC%88%98%EC%B0%BE%EA%B8%B0level-2)
+
+- - -
