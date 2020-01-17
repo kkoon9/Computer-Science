@@ -36,3 +36,19 @@ class Solution {
         return answer;
     }
 }
+
+class Solution2 {
+    public int[] solution(int brown, int red) {
+        int sum = brown + red;
+        int height, width;
+        for (height = 3; ; height++) {
+            if (!(sum % height != 0)) {
+                width = sum / height;
+                if (((height - 2) * (width - 2)) == red)
+                    break;
+            }
+        }
+        int answer[] = {width, height};
+        return answer;
+    }
+}
