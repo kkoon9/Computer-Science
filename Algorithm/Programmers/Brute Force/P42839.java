@@ -6,9 +6,11 @@
  * 완전 탐색(Brute Force) 문제!
  * String 타입 numbers에서 만들 수 있는 모든 순열을 찾을 때 애를 먹었다!
  * 소수 찾는 방법은 Math.sqrt를 사용하여 해결하였다!
+ * 20200127 리팩터링 : 문자열에서 가능한 수를 hashSet에 넣을 때 코드
  * */
+
 import java.util.*;
-import  java.lang.Math;
+import java.lang.Math;
 
 class Solution {
     Set <Integer> hs = new HashSet<Integer>();
@@ -40,10 +42,11 @@ class Solution {
             if(!s.equals(""))
                 hs.add(Integer.parseInt(s));
         } else {
-            for (int i = 0; i < number.length(); i++)
+            for (int i = 0; i < number.length(); i++) {
                 func(s + number.charAt(i), number.substring(0,i) + number.substring(i+1, number.length()));
-            for (int i = 0; i< number.length(); i++)
-                func(s, number.substring(0,i) + number.substring(i+1, number.length()));
+                if(!s.equals(""))
+                    hs.add(Integer.parseInt(s));
+            }
         }
     }
 }
