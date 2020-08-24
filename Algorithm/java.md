@@ -18,28 +18,3 @@ public class StartWithExample{
     }
 }
 ```
-
-## String 길이로 정렬
-- 보통 String을 sort할 때에는 알파벳 순으로 한다.
-```java
-// example s1[3] = ["abc", "cd", "aaqq"];
-Arrays.sort(s1);
-// "aaqq", "abc", "cd"
-```
-- 다음은 길이로 정렬하는 코드이다.
-```java
-class comp implements Comparator<String> {
-    public int compare(String o1, String o2) {
-        if (o1.length() > o2.length()) {
-            return 1;
-        } else if (o1.length() < o2.length()) {
-            return -1;
-        } else {
-            return 0;
-        }
-    }
-}
-// example s1[3] = ["abc", "cd", "aaqq"];
-Arrays.sort(s1, new comp());
-// "cd", "abc", "aaqq"
-```
