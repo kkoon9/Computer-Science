@@ -280,3 +280,29 @@ class CountofNumber {
     return str.length();
   }
 }
+
+/**
+ * @desc N자리의 자연수가 입력되면 자연수의 자릿수 중 가장 많이 사용된 숫자를 출력
+ * @param 정수
+ * @return 가장 많이 사용된 숫자
+ */
+class MostUsedNumber {
+  public int solution(String N) {
+    int[] numbers = new int[10];
+    int num = 0;
+    int mostusednumber = 0;
+    for (int i = 0; i < 10; i++) {
+      numbers[i] = 0;
+    }
+    for (int i = 0; i < N.length(); i++) {
+      numbers[N.charAt(i) - '0']++;
+    }
+    for (int i = 0; i < 10; i++) {
+      if (num <= numbers[i]) {
+        num = numbers[i];
+        mostusednumber = i;
+      }
+    }
+    return mostusednumber;
+  }
+}
