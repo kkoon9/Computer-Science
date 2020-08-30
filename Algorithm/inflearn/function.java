@@ -590,3 +590,31 @@ class CardGameScoreAndWinner {
     return answer;
   }
 }
+
+/**
+ * @desc N번의 온도가 주어졌을 때, 가장 큰 연속된(K) 온도의 합을 출력하는 프로그램
+ * @desc 연속합을 출력하는 프로그램
+ * @param N, K, N개의 온도
+ * @return 두 사람의 카드 게임 점수와 승자
+ */
+class GetMaxContinuousSum {
+  public int solution(int N, int K, int[] arr) {
+    int answer = -1000;
+    for (int i = 0; i < N - K + 1; i++) {
+      int sum = ContinuousSumWithK(arr, K, i);
+      if (answer < sum) {
+        answer = sum;
+      }
+    }
+    return answer;
+  }
+
+  private int ContinuousSumWithK(int[] arr, int k, int i) {
+    int result = 0;
+    int length = i + k;
+    for (; i < length; i++) {
+      result += arr[i];
+    }
+    return result;
+  }
+}
