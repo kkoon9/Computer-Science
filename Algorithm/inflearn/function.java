@@ -482,3 +482,32 @@ class GetMaxContinuous {
     return answer;
   }
 }
+
+/**
+ * @desc 뒷사람 모두의 시야를 가리는 사람의 수를 출력하는 프로그램
+ * @param N, N명의 앉은 키
+ * @return 시야를 가리는 사람의 수
+ */
+class CountOfBlind {
+  final int MAX = 105;
+  int[] memo = new int[MAX];
+  int answer = 0;
+
+  public int solution(int N, int[] arr) {
+    memo[0] = 1; // 0이면 기울기가 음수, 1이면 기울기가 양수
+    for (int i = 1; i < N; i++) {
+      // 기울기가 양수
+      if (memo[i - 1] == 1) {
+        memo[i] = 1;
+        // 앞사람보다 앉은키가 작다면
+        if (arr[i - 1] > arr[i]) {
+          answer++;
+          memo[i] = 0;
+        }
+      } else if (arr[i - 1] < arr[i]) {
+        memo[i] = 1;
+      }
+    }
+    return answer;
+  }
+}
