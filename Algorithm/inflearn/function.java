@@ -164,3 +164,34 @@ class RestoreStirng {
     return str.toLowerCase();
   }
 }
+
+/**
+ * @desc 괄호 문자열을 입력받아 올바른 괄호인지 출력하는 프로그램
+ * @param 괄호 문자열
+ * @return Yes or No
+ */
+
+class IsRightBracket {
+  public String solution(String bracket) {
+    String answer = "YES";
+    int bracketSize = bracket.length();
+    int leftCount = 0;
+
+    for (int i = 0; i < bracketSize; i++) {
+      if (bracket.charAt(i) == '(') {
+        leftCount++;
+      } else {
+        if (leftCount == 0) {
+          answer = "NO";
+          break;
+        } else {
+          leftCount--;
+        }
+      }
+    }
+    if (leftCount != 0) {
+      answer = "NO";
+    }
+    return answer;
+  }
+}
