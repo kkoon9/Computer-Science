@@ -12,3 +12,24 @@ class MultipleSum {
     return answer;
   }
 }
+
+/**
+ * @desc 자연수 A,B가 입력되면 A부터 B까지의 합을 수식과 함께 출력하는 프로그램
+ * @param 1<=A<B<=1000
+ * @return 수식과 함께 합을 출력(answer)
+ */
+class SumofNaturalNumber {
+  public String solution(int A, int B) {
+    String answer = "";
+    int sum = 0;
+    for (int i = A; i <= B; i++) {
+      sum += i;
+      answer += String.valueOf(i);
+      answer += " + ";
+    }
+    answer = answer.substring(0, answer.length() - 3);
+    answer += " = ";
+    answer += String.valueOf(sum);
+    return answer;
+  }
+}
