@@ -557,3 +557,36 @@ class GetResultRockPaperScissors {
     return result;
   }
 }
+
+/**
+ * @desc 두 사람의 카드게임 점수와 승자를 출력하는 프로그램
+ * @param N, 두 사람의 10번의 카드게임 정보
+ * @return 두 사람의 카드 게임 점수와 승자
+ */
+class CardGameScoreAndWinner {
+  final int SIZE = 10;
+
+  public String solution(int[] A, int[] B) {
+    String answer = "";
+    int aScore = 0;
+    int bScore = 0;
+    for (int i = 0; i < SIZE; i++) {
+      if (A[i] > B[i]) {
+        aScore += 3;
+      } else if (A[i] < B[i]) {
+        bScore += 3;
+      } else {
+        aScore++;
+        bScore++;
+      }
+    }
+    answer += String.valueOf(aScore) + " " + String.valueOf(bScore) + " ";
+    if (aScore > bScore)
+      answer += "A";
+    else if (aScore < bScore)
+      answer += "B";
+    else
+      answer += "D";
+    return answer;
+  }
+}
