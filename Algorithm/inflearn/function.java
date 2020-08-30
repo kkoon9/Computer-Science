@@ -195,3 +195,28 @@ class IsRightBracket {
     return answer;
   }
 }
+
+/**
+ * @desc 자연수 N을 입력받아 1부터 N까지의 약수의 개수를 출력하는 프로그램
+ * @param 정수
+ * @return 약수의 개수(Integer형 배열)
+ */
+class GetDivisorCountAll {
+  public int[] solution(int number) {
+    int[] answer = new int[number];
+    for (int i = 1; i <= number; i++) {
+      answer[i - 1] = getDivisorCount(i);
+    }
+    return answer;
+  }
+
+  int getDivisorCount(int number) {
+    int result = 0;
+    for (int i = 1; i <= number; i++) {
+      if (number % i == 0) {
+        result++;
+      }
+    }
+    return result;
+  }
+}
