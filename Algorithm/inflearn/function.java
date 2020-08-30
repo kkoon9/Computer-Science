@@ -143,3 +143,24 @@ class GetOnlyNumber {
     return result;
   }
 }
+
+/**
+ * @desc 문자열을 입력받아 소문자로 변환 및 공백을 제거하는 프로그램
+ * @param 문자열
+ * @return 문자열
+ */
+class RestoreStirng {
+  public String solution(String str) {
+    String answer = RemoveBlank(str);
+    answer = ConvertToLowercase(answer);
+    return answer;
+  }
+
+  String RemoveBlank(String str) {
+    return str.replaceAll(" ", "");
+  }
+
+  String ConvertToLowercase(String str) {
+    return str.toLowerCase();
+  }
+}
