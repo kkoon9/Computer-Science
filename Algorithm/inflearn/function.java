@@ -353,3 +353,38 @@ class IsReversePrimeNumber {
     return Integer.parseInt(result);
   }
 }
+
+/**
+ * @desc N을 입력받아 1부터 N까지의 소수의 개수를 출력하는 프로그램
+ * @param 정수
+ * @return 소수의 개수를 출력
+ */
+class GetCountOfPrimeNumber {
+  final int MAX = 100000;
+  boolean[] prime = new boolean[MAX];
+
+  public int solution(int N) {
+    Prime();
+    int answer = 0;
+    for (int i = 2; i <= N; i++) {
+      if (isPrime(i)) {
+        answer++;
+      }
+    }
+    return answer;
+  }
+
+  void Prime() {
+    for (int i = 2; i < Math.sqrt(MAX); i++) {
+      if (!prime[i]) {
+        for (int j = i + i; j < MAX; j += i) {
+          prime[j] = true;
+        }
+      }
+    }
+  }
+
+  boolean isPrime(int x) {
+    return prime[x] ? false : true;
+  }
+}
