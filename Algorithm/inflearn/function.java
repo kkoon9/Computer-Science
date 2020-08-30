@@ -511,3 +511,49 @@ class CountOfBlind {
     return answer;
   }
 }
+
+/**
+ * @desc 두 사람의 가위바위보 결과를 출력하는 프로그램
+ * @param N, 두 사람의 N번의 가위바위보 정보
+ * @return 가위바위보 결과를 가지는 배열
+ */
+class GetResultRockPaperScissors {
+  public String solution(int N, int[] A, int[] B) {
+    String answer = "";
+    for (int i = 0; i < N; i++) {
+      answer += whoWin(A[i], B[i]);
+    }
+    return answer;
+  }
+
+  String whoWin(int A, int B) {
+    String result = "";
+    // A가 가위일 때
+    if (A == 1) {
+      if (B == 1) {
+        result = "D ";
+      } else if (B == 2) {
+        result = "B ";
+      } else {
+        result = "A ";
+      }
+    } else if (A == 2) {
+      if (B == 1) {
+        result = "A ";
+      } else if (B == 2) {
+        result = "D ";
+      } else {
+        result = "B ";
+      }
+    } else {
+      if (B == 1) {
+        result = "B ";
+      } else if (B == 2) {
+        result = "A ";
+      } else {
+        result = "D ";
+      }
+    }
+    return result;
+  }
+}
