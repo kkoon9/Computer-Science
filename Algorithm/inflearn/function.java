@@ -105,3 +105,41 @@ class GetAgeAndGender {
     return answer;
   }
 }
+
+/**
+ * @desc 문자열을 입력받아 숫자만 추출한 후 숫자의 약수의 개수와 함께 출력하는
+ * @param 문자열
+ * @return 숫자와 약수의 개수를 출력
+ */
+class GetOnlyNumber {
+  public void solution(String str) {
+    int number = Integer.parseInt(getNumber(str));
+    int divisorCount = getDivisorCount(number);
+    System.out.println(number);
+    System.out.println(divisorCount);
+  }
+
+  int getDivisorCount(int number) {
+    int result = 0;
+    for (int i = 1; i <= number; i++) {
+      if (number % i == 0) {
+        result++;
+      }
+    }
+    return result;
+  }
+
+  String getNumber(String str) {
+    List<Integer> list = new LinkedList<>();
+    Pattern p = Pattern.compile("\\d+");
+    Matcher m = p.matcher(str);
+    while (m.find()) {
+      list.add(Integer.parseInt(m.group()));
+    }
+    String result = "";
+    for (int number : list) {
+      result += String.valueOf(number);
+    }
+    return result;
+  }
+}
