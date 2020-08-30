@@ -423,3 +423,30 @@ class IsAnagram {
     return arr;
   }
 }
+
+/**
+ * @desc N개의 숫자가 주어지면 각 숫자 m부터 1까지 더한 수가 맞는지 출력하는 프로그램
+ * @param N개의 숫자와 그에 해당하는 합
+ * @return YES or NO
+ */
+class SumFromOneToNumber {
+  public String[] solution(int N, int[][] arr) {
+    String[] answer = new String[N];
+    for (int i = 0; i < N; i++) {
+      if (arr[i][1] == getSum(arr[i][0])) {
+        answer[i] = "YES";
+      } else {
+        answer[i] = "NO";
+      }
+    }
+    return answer;
+  }
+
+  int getSum(int number) {
+    int result = 0;
+    for (int i = 1; i <= number; i++) {
+      result += i;
+    }
+    return result;
+  }
+}
