@@ -70,3 +70,38 @@ class MostAgeGap {
     return answer;
   }
 }
+
+/**
+ * @desc 주민등록번호가 주어지면 나이와 성별을 출력하는 프로그램
+ * @param 주민등록번호
+ * @return 나이와 성별을 공백을 구분으로 출력
+ */
+class GetAgeAndGender {
+  public String solution(String identificationNumber) {
+    String answer = "";
+    int years = Integer.parseInt(identificationNumber.substring(0, 2));
+    String gender = "";
+    switch (identificationNumber.charAt(7)) {
+      case '1':
+        years += 1900;
+        gender = "M";
+        break;
+      case '3':
+        years += 2000;
+        gender = "M";
+        break;
+      case '2':
+        years += 1900;
+        gender = "W";
+        break;
+      case '4':
+        years += 2000;
+        gender = "W";
+        break;
+      default:
+        break;
+    }
+    answer = String.valueOf(2020 - years) + " " + gender;
+    return answer;
+  }
+}
