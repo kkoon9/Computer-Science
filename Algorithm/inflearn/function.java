@@ -388,3 +388,38 @@ class GetCountOfPrimeNumber {
     return prime[x] ? false : true;
   }
 }
+
+/**
+ * @desc 두 개의 문자열을 입력받아 두 문자열이 아나그램인지 판별하는 프로그램
+ * @param 두 문자열
+ * @return YES or NO
+ */
+class IsAnagram {
+  final int SIZE = 53;
+
+  public String solution(String str1, String str2) {
+    String answer = "YES";
+    int[] anagramFirst = anagram(str1);
+    int[] anagramSecond = anagram(str2);
+    for (int i = 0; i < SIZE; i++) {
+      if (anagramFirst[i] != anagramSecond[i]) {
+        answer = "NO";
+        break;
+      }
+    }
+    return answer;
+  }
+
+  int[] anagram(String str) {
+    int[] arr = new int[SIZE];
+    for (int i = 0; i < str.length(); i++) {
+      char ch = str.charAt(i);
+      if (ch > 'Z') {
+        arr[ch - 'a' + SIZE / 2]++;
+      } else {
+        arr[ch - 'A']++;
+      }
+    }
+    return arr;
+  }
+}
