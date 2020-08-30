@@ -265,3 +265,18 @@ class SumOfDigits {
     return result;
   }
 }
+
+/**
+ * @desc N을 입력받아 1부터 N까지의 자연수는 몇 개가 사용되었는지 출력하는 프로그램
+ * @param 정수
+ * @return 숫자의 개수
+ */
+class CountofNumber {
+  public int solution(int N) {
+    String str = "";
+    for (int i = 1; i <= N; i++) {
+      str += String.valueOf(i);
+    }
+    return str.length();
+  }
+}
