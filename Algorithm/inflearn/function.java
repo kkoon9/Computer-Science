@@ -306,3 +306,50 @@ class MostUsedNumber {
     return mostusednumber;
   }
 }
+
+/**
+ * @desc N개의 정수를 입력받아 각 숫자의 뒤집은 숫자가 소수인지 판별하는 프로그램
+ * @param N개의 정수
+ * @return 소수인 숫자들 출력
+ */
+class IsReversePrimeNumber {
+  final int MAX = 100000;
+  boolean[] prime = new boolean[MAX];
+
+  public int[] solution(int N, int[] numbers) {
+    List<Integer> list = new LinkedList<>();
+    Prime();
+    for (int number : numbers) {
+      int reverseNumber = reverse(number);
+      if (isPrime(reverseNumber)) {
+        list.add(reverseNumber);
+      }
+    }
+    int[] answer = new int[list.size()];
+    int i = 0;
+    for (int number : list) {
+      answer[i++] = number;
+    }
+    return answer;
+  }
+
+  void Prime() {
+    for (int i = 2; i < Math.sqrt(MAX); i++) {
+      if (!prime[i]) {
+        for (int j = i + i; j < MAX; j += i) {
+          prime[j] = true;
+        }
+      }
+    }
+  }
+
+  boolean isPrime(int x) {
+    return prime[x] ? false : true;
+  }
+
+  int reverse(int x) {
+    StringBuilder sb = new StringBuilder();
+    String result = sb.append(x).reverse().toString();
+    return Integer.parseInt(result);
+  }
+}
