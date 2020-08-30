@@ -56,3 +56,17 @@ class ProperDivisor {
     return answer;
   }
 }
+
+/**
+ * @desc 자연수 N명의 나이가 입력되면 최대 나이 차이를 출력하는 프로그램
+ * @param 2<=N<=100
+ * @return 최대 나이 차이를 출력
+ */
+class MostAgeGap {
+  public int solution(int N, int[] arr) {
+    int answer = 0;
+    Arrays.sort(arr);
+    answer = arr[arr.length - 1] - arr[0];
+    return answer;
+  }
+}
