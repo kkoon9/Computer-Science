@@ -220,3 +220,48 @@ class GetDivisorCountAll {
     return result;
   }
 }
+
+/**
+ * @desc N개의 자연수를 입력받아 각 자연수의 자릿수의 합을 구하고 그 합이 최대인 자연수 출력
+ * @desc 자릿수의 합이 최대인 자연수가 여러개인 경우 그 중 값이 가장 큰 값을 출력
+ * @param 정수
+ * @return 약수의 개수(Integer형 배열)
+ */
+class SumOfDigits {
+  class Number implements Comparable<Number> {
+    int num;
+    int sumofdigit;
+
+    Number(int num, int sumofdigit) {
+      this.num = num;
+      this.sumofdigit = sumofdigit;
+    }
+
+    @Override
+    public int compareTo(Number o) {
+      int result = o.sumofdigit - this.sumofdigit;
+      if (result == 0) {
+        result = o.num - this.num;
+      }
+      return result;
+    }
+  }
+
+  public int solution(int N, int[] numbers) {
+    Number[] NumArr = new Number[numbers.length];
+    int i = 0;
+    for (int number : numbers) {
+      NumArr[i++] = new Number(number, sumOfDigit(String.valueOf(number)));
+    }
+    Arrays.sort(NumArr);
+    return NumArr[0].num;
+  }
+
+  int sumOfDigit(String number) {
+    int result = 0;
+    for (int i = 0; i < number.length(); i++) {
+      result += number.charAt(i) - '0';
+    }
+    return result;
+  }
+}
