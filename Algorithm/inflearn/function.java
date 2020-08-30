@@ -450,3 +450,35 @@ class SumFromOneToNumber {
     return result;
   }
 }
+
+/**
+ * @desc 세대의 측청치가 M값을 넘으면 경보음이 울린다. N초 동안의 실시간 측정치가 주어지면 최대 연속으로 경보음이 울린 시간을
+ *       출력하는 프로그램(DP)
+ * @param N초 동안에 실시간 측청치와 M
+ * @return YES or NO
+ */
+class GetMaxContinuous {
+  final int MAX = 105;
+  int[] memo = new int[MAX];
+  int answer = 0;
+
+  public int solution(int N, int M, int[] arr) {
+    memo[0] = 0;
+    for (int i = 1; i <= N; i++) {
+      if (arr[i - 1] > M) {
+        memo[i] = memo[i - 1] + 1;
+      } else {
+        memo[i] = 0;
+      }
+    }
+    for (int i = 0; i <= N; i++) {
+      if (answer < memo[i]) {
+        answer = memo[i];
+      }
+    }
+    if (answer == 0) {
+      answer = -1;
+    }
+    return answer;
+  }
+}
