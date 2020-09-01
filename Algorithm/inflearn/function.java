@@ -854,3 +854,20 @@ class Question28 {
     return prime[x] ? false : true;
   }
 }
+
+/**
+ * @desc 1부터 N까지 자연수를 적을 때 3의 개수가 몇 개 있는지 구하는 프로그램(small)
+ * @param 정수 N
+ * @return 3의 개수
+ */
+class Question29 {
+  public int solution(int N) {
+    String str = "";
+    for (int i = 1; i <= N; i++) {
+      str += String.valueOf(i);
+    }
+    int length = str.length();
+    str = str.replaceAll("3", "");
+    return length - str.length();
+  }
+}
