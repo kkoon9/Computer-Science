@@ -895,3 +895,27 @@ class Question30 {
     return res;
   }
 }
+
+/**
+ * @desc 탄화수소의 질량을 구하는 프로그램
+ * @desc 식의 형태는 CaHb a나 b가 1이면 숫자가 식에 입력되지 않는다.
+ * @param 문자열 (탄화수소)
+ * @return 탄화수소 질량
+ */
+class Question31 {
+  final int C = 12;
+  final int H = 1;
+
+  public int solution(String str) {
+    int answer = 0;
+    String[] strArr = str.replace("C", "0").replaceAll("H", ",").split(",");
+    answer += C * Integer.parseInt(strArr[0]) + H * Integer.parseInt(strArr[1]);
+    if (Integer.parseInt(strArr[0]) == 0) {
+      answer += C;
+    }
+    if (Integer.parseInt(strArr[1]) == 0) {
+      answer += H;
+    }
+    return answer;
+  }
+}
