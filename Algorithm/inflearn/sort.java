@@ -189,3 +189,23 @@ class InversionSequence {
     return answer;
   }
 }
+
+/**
+ * @desc 두 배열의 원소를 합치는 프로그램
+ * @param 정수 aSize, bSize, 길이가 aSize, bSize인 배열
+ * @return answer 배열
+ */
+class TwoArrayMerge {
+  public int[] solution(int aSize, int[] A, int bSize, int[] B) {
+    int[] answer = new int[aSize + bSize];
+    int i = 0;
+    for (; i < aSize; i++) {
+      answer[i] = A[i];
+    }
+    for (int j = 0; j < bSize; j++) {
+      answer[i++] = B[j];
+    }
+    Arrays.sort(answer);
+    return answer;
+  }
+}
