@@ -57,3 +57,22 @@ class GetThirdScore {
     return arr;
   }
 }
+
+/**
+ * @desc 버블정렬
+ * @param 정수(N), N의 길이를 가지는 배열(arr)
+ * @return 정렬된 배열(arr)
+ */
+class BubbleSort {
+  public int[] solution(int N, int[] arr) {
+    for (int i = N - 1; i > 0; i--) {
+      for (int j = 0; j < i; j++)
+        if (arr[j] > arr[j + 1]) {
+          int temp = arr[j + 1];
+          arr[j + 1] = arr[j];
+          arr[j] = temp;
+        }
+    }
+    return arr;
+  }
+}
