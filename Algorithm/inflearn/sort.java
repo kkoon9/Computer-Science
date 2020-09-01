@@ -169,3 +169,23 @@ class LRU {
     return answer;
   }
 }
+
+/**
+ * @desc Inversion Sequnece
+ * @param 정수 N, 길이 N인 Inversion Sequence 정보를 담은 배열
+ * @return Inversion Sequence를 통해 얻어낸 배열
+ */
+class InversionSequence {
+  public int[] solution(int N, int[] is) {
+    int[] answer = new int[N + 1];
+    for (int i = N; i >= 1; i--) {
+      int seq = i;
+      for (int j = 1; j <= is[i]; j++) {
+        answer[seq] = answer[seq + 1];
+        seq++;
+      }
+      answer[seq] = i;
+    }
+    return answer;
+  }
+}
