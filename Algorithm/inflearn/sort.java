@@ -115,3 +115,25 @@ class SpecialSort {
     return arr;
   }
 }
+
+/**
+ * @desc 삽입정렬
+ * @param 정수(N), N의 길이를 가지는 배열(arr)
+ * @return 정렬된 배열(arr)
+ */
+class InsertionSort {
+  public int[] solution(int N, int[] arr) {
+    for (int i = 1; i < N; i++) {
+      int temp = arr[i];
+      int j = i - 1;
+      for (; j >= 0; j--) {
+        if (arr[j] > temp) {
+          arr[j + 1] = arr[j];
+        } else
+          break;
+      }
+      arr[j + 1] = temp;
+    }
+    return arr;
+  }
+}
