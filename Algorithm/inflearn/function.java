@@ -797,3 +797,60 @@ class Question27 {
     return prime[x] ? false : true;
   }
 }
+
+/**
+ * @desc N! 값에서 일의자리부터 연속적으로 '0'이 몇 개 있는지 구하는 프로그램
+ * @param 정수 N
+ * @return 최대 연속된 '0'의 개수
+ */
+class Question28 {
+  final int MAX = 1001;
+  boolean[] prime = new boolean[MAX];
+  int[] primeCount;
+
+  public int solution(int N) {
+    primeCount = new int[N + 1];
+    Prime();
+    int answer;
+    for (int i = N; i >= 2; i--) {
+      if (isPrime(i)) { // 소수라면
+        primeCount[i]++;
+      } else {
+        soinsu(i);
+      }
+    }
+    answer = primeCount[2] > primeCount[5] ? primeCount[5] : primeCount[2];
+    return answer;
+  }
+
+  void Prime() {
+    for (int i = 2; i < Math.sqrt(MAX); i++) {
+      if (!prime[i]) {
+        for (int j = i + i; j < MAX; j += i) {
+          prime[j] = true;
+        }
+      }
+    }
+  }
+
+  void soinsu(int num) {
+    int i = 2;
+    while (num != 1) {
+      if (!isPrime(i)) { // 소수가 아니라면 i++
+        i++;
+        continue;
+      }
+      // 나누어 떨어진다면
+      if (num % i == 0) {
+        primeCount[i]++;
+        num /= i;
+      } else {
+        i++;
+      }
+    }
+  }
+
+  boolean isPrime(int x) {
+    return prime[x] ? false : true;
+  }
+}
