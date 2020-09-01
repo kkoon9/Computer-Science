@@ -714,3 +714,26 @@ class Question25 {
     return answer;
   }
 }
+
+/**
+ * @desc 선수들의 평소 실력을 현재 달리고 있는 순서대로 입력 받아 각 선수의 최선의 등수를 계산하는 프로그램
+ * @desc 선수의 평소실력이 같다면 앞에 달리는 선수를 앞지를 수 없다.
+ * @param N, N명의 평소 실력
+ * @return 최선의 등수
+ */
+class Question26 {
+  public int[] solution(int N, int[] players) {
+    int[] answer = new int[N];
+    for (int i = 0; i < N; i++) {
+      answer[i] = i + 1;
+    }
+    for (int i = 1; i < N; i++) {
+      for (int j = 0; j < i; j++) {
+        if (players[i] > players[j]) {
+          answer[i]--;
+        }
+      }
+    }
+    return answer;
+  }
+}
