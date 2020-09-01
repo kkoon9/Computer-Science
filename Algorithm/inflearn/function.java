@@ -630,20 +630,40 @@ class Question23 {
   int[] memo = new int[MAX];
 
   public int solution(int N, int[] arr) {
-      int answer= 0;
-      memo[0] = 1;
-      for (int i = 1; i < N; i++) {
-          if(arr[i-1] <= arr[i]) {
-              memo[i] = memo[i-1] + 1;
-          } else {
-              memo[i] = 1;
-          }
+    int answer = 0;
+    memo[0] = 1;
+    for (int i = 1; i < N; i++) {
+      if (arr[i - 1] <= arr[i]) {
+        memo[i] = memo[i - 1] + 1;
+      } else {
+        memo[i] = 1;
       }
-      for (int i = 0; i <= N; i++) {
-          if (answer < memo[i]) {
-              answer = memo[i];
-          }
+    }
+    for (int i = 0; i <= N; i++) {
+      if (answer < memo[i]) {
+        answer = memo[i];
       }
-      return answer;
+    }
+    return answer;
+  }
+}
+
+/**
+ * @desc N개의 정수로 이루어진 수열에 대해 서로 인접해 있는 두 수의 차가 1에서 N-1까지의 값을 모두 가지면 Jolly
+ *       Jumpers라고 한다.
+ * @desc 주어진 수열이 Jolly Jumpers인지 판단하는 프로그램
+ * @param N, N개의 수열
+ * @return YES or NO
+ */
+class Question24 {
+  public String solution(int N, int[] arr) {
+    String answer = "YES";
+    for (int i = 0; i < N - 1; i++) {
+      if (Math.abs(arr[i] - arr[i + 1]) >= N) {
+        answer = "NO";
+        break;
+      }
+    }
+    return answer;
   }
 }
