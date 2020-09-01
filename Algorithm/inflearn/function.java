@@ -919,3 +919,30 @@ class Question31 {
     return answer;
   }
 }
+
+/**
+ * @desc 연속된 자연수의 합이 N이 되는 수식을 구하는 프로그램
+ * @param 정수 N(7<=N<=1000)
+ * @return N이 되는 수식
+ */
+class NumberThatBecomesN {
+  public void solution(int N) {
+    int become = N % 2 == 0 ? N : N + 1;
+    int hap = 0;
+    String str = "";
+    for (int i = become / 2; i >= 0; i--) {
+      for (int j = i; j >= 0; j--) {
+        str += String.valueOf(j) + " + ";
+        hap += j;
+        if (hap == N) {
+          str = str.substring(0, str.length() - 2);
+          str += "= " + String.valueOf(N);
+          System.out.println(str);
+          break;
+        }
+      }
+      hap = 0;
+      str = "";
+    }
+  }
+}
