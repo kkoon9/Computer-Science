@@ -618,3 +618,32 @@ class GetMaxContinuousSum {
     return result;
   }
 }
+
+/**
+ * @desc N개의 숫자를 입력받아 연속적으로 증가하는 부분 수열의 최대 길이를 출력하는 프로그램
+ * @desc 연속 부분 증가수열을 출력하는 프로그램
+ * @param N, N개의 수열
+ * @return 연속 부분 증가수열
+ */
+class Question23 {
+  final int MAX = 100001;
+  int[] memo = new int[MAX];
+
+  public int solution(int N, int[] arr) {
+      int answer= 0;
+      memo[0] = 1;
+      for (int i = 1; i < N; i++) {
+          if(arr[i-1] <= arr[i]) {
+              memo[i] = memo[i-1] + 1;
+          } else {
+              memo[i] = 1;
+          }
+      }
+      for (int i = 0; i <= N; i++) {
+          if (answer < memo[i]) {
+              answer = memo[i];
+          }
+      }
+      return answer;
+  }
+}
