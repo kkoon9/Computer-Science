@@ -737,3 +737,63 @@ class Question26 {
     return answer;
   }
 }
+
+/**
+ * @desc 팩토리얼의 결과를 소인수분해하는 프로그램
+ * @param N
+ * @return N!을 소인수분해한 결과
+ */
+class Question27 {
+  final int MAX = 1001;
+  boolean[] prime = new boolean[MAX];
+  int[] primeCount;
+
+  public String solution(int N) {
+    primeCount = new int[N + 1];
+    Prime();
+    String answer = String.valueOf(N) + "! = ";
+    for (int i = N; i >= 2; i--) {
+      if (isPrime(i)) { // 소수라면
+        primeCount[i]++;
+      } else {
+        soinsu(i);
+      }
+    }
+    for (int i = 2; i <= N; i++) {
+      if (isPrime(i))
+        answer += String.valueOf(primeCount[i]) + " ";
+    }
+    return answer;
+  }
+
+  void Prime() {
+    for (int i = 2; i < Math.sqrt(MAX); i++) {
+      if (!prime[i]) {
+        for (int j = i + i; j < MAX; j += i) {
+          prime[j] = true;
+        }
+      }
+    }
+  }
+
+  void soinsu(int num) {
+    int i = 2;
+    while (num != 1) {
+      if (!isPrime(i)) { // 소수가 아니라면 i++
+        i++;
+        continue;
+      }
+      // 나누어 떨어진다면
+      if (num % i == 0) {
+        primeCount[i]++;
+        num /= i;
+      } else {
+        i++;
+      }
+    }
+  }
+
+  boolean isPrime(int x) {
+    return prime[x] ? false : true;
+  }
+}
