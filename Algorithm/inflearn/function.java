@@ -667,3 +667,50 @@ class Question24 {
     return answer;
   }
 }
+
+/**
+ * @desc 각 학생의 석차를 입력된 순서대로 출력하는 프로그램
+ * @param N, N명의 성적
+ * @return 학생들의 석차
+ */
+class Question25 {
+  class Rank implements Comparable<Rank> {
+    int score;
+    int index;
+
+    Rank(int score, int index) {
+      this.score = score;
+      this.index = index;
+    }
+
+    @Override
+    public int compareTo(Rank o) {
+      int result = o.score - this.score;
+      return result;
+    }
+  }
+
+  public int[] solution(int N, int[] scores) {
+    Rank[] scoreArr = new Rank[N];
+    int[] answer = new int[N];
+    int i = 0;
+    int rank = 1;
+    int same = 1;
+    for (i = 0; i < N; i++) {
+      scoreArr[i] = new Rank(scores[i], i);
+    }
+    Arrays.sort(scoreArr);
+    answer[scoreArr[0].index] = rank;
+    for (i = 1; i < N; i++) {
+      if (scoreArr[i - 1].score == scoreArr[i].score) {
+        answer[scoreArr[i].index] = rank;
+        same++;
+      } else {
+        rank += same;
+        answer[scoreArr[i].index] = rank;
+        same = 1;
+      }
+    }
+    return answer;
+  }
+}
