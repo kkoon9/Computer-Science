@@ -137,3 +137,35 @@ class InsertionSort {
     return arr;
   }
 }
+
+/**
+ * @desc LRU(카카오)
+ * @param 캐시 크기(cacheSize), 정수(N), N의 길이를 가지는 배열(arr)
+ * @return 캐시 안에 있는 요소
+ */
+class LRU {
+  public int[] solution(int cacheSize, int N, int[] arr) {
+    LinkedList<String> cache = new LinkedList<>();
+    for (int num : arr) {
+      String obj = String.valueOf(num);
+      // HIT
+      if (cache.remove(obj)) {
+        cache.addFirst(obj);
+      }
+      // MISS
+      else {
+        // cache가 꽉 차 있다면
+        if (cache.size() == cacheSize) {
+          cache.pollLast();
+        }
+        cache.addFirst(obj);
+      }
+    }
+    int currentCacheSize = cache.size();
+    int[] answer = new int[currentCacheSize];
+    for (int i = 0; i < currentCacheSize; i++) {
+      answer[i] = Integer.parseInt(cache.pollFirst());
+    }
+    return answer;
+  }
+}
