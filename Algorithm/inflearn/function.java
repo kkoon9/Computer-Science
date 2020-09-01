@@ -871,3 +871,27 @@ class Question29 {
     return length - str.length();
   }
 }
+
+/**
+ * @desc 1부터 N까지 자연수를 적을 때 3의 개수가 몇 개 있는지 구하는 프로그램(large)
+ * @param 정수 N
+ * @return 3의 개수
+ */
+class Question30 {
+  public int solution(int N) {
+    int left = 77, right, cur, k = 1, res = 0;
+    while (left != 0) {
+      left = N / (k * 10);
+      right = N % k;
+      cur = (N / k) % 10;
+      if (3 < cur) {
+        res = res + ((left + 1) * k);
+      } else if (3 == cur) {
+        res = res + ((left * k) + (right + 1));
+      } else
+        res = res + (left * k);
+      k = k * 10;
+    }
+    return res;
+  }
+}
