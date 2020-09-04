@@ -946,3 +946,33 @@ class NumberThatBecomesN {
     }
   }
 }
+
+/**
+ * @desc 1번부터 K번째 되는 대상은 제외된다. 마지막 남은 한 사람의 번호를 구하는 프로그램
+ * @param 정수 N, K
+ * @return 마지막으로 남은 사람의 번호
+ */
+class Question45 {
+  public int solution(int N, int K) {
+    int answer = 0;
+    LinkedList<Integer> linkedList = new LinkedList<>();
+    for (int i = 1; i <= N; i++) {
+      linkedList.add(i);
+    }
+    int index = 0;
+    int cnt = 0;
+    while (linkedList.size() != 1) {
+      if (cnt == K - 1) {
+        linkedList.remove(index);
+        cnt = 0;
+      } else {
+        cnt++;
+        index++;
+      }
+      if (index >= linkedList.size()) {
+        index = 0;
+      }
+    }
+    return linkedList.get(0);
+  }
+}
