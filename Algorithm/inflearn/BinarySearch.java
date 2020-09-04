@@ -72,3 +72,56 @@ class Question43 {
     return cnt;
   }
 }
+
+/**
+ * @desc K마리의 말을 N개의 마구간에 배치했을 때 가장 가까운 두 말의 거리가 최대가 되는 그 최대 값을 구하는 프로그램
+ * @param 정수(N), 길이가 N인 배열, 말의 개수
+ * @return 가장 가까운 두 말의 최대 거리
+ */
+class Question44 {
+  public int solution(int N, int M) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int[] arr = new int[N];
+    for (int i = 0; i < N; i++) {
+      arr[i] = Integer.parseInt(br.readLine());
+    }
+    int answer = 0;
+    int left = 0;
+    int right;
+    int mid;
+    Arrays.sort(arr);
+    left = 1;
+    right = arr[N - 1];
+    mid = right / 2;
+    while (left <= right) {
+      // 가능하니까 더 줄여보자.
+      if (counting(arr, M, mid)) {
+        left = mid + 1;
+        answer = mid;
+      } else {
+        right = mid - 1;
+      }
+      mid = (left + right) / 2;
+    }
+    return answer;
+  }
+
+  boolean counting(int[] arr, int M, int mid) {
+    int cnt = M - 1;
+    int horse = arr[0];
+    boolean answer = false;
+    for (int i = 1; i < arr.length; i++) {
+      if (cnt < 0) {
+        break;
+      }
+      if (arr[i] - horse >= mid) {
+        cnt--;
+        horse = arr[i];
+      }
+    }
+    if (cnt < 0) {
+      answer = true;
+    }
+    return answer;
+  }
+}
