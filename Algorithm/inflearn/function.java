@@ -1026,3 +1026,39 @@ class Question47 {
     return answer;
   }
 }
+
+/**
+ * @desc 평균과 가까운 수 출력하는 프로그램
+ * @param 길이가 9인 2차원 배열
+ * @return 평균값과 가까운 수 출력
+ */
+class Question48 {
+  public int solution() throws IOException {
+    final int N = 9;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int[][] arr = new int[N][N];
+    long[] average = new long[N];
+    for (int i = 0; i < N; i++) {
+      StringTokenizer st = new StringTokenizer(br.readLine());
+      double sum = 0.0;
+      for (int j = 0; j < N; j++) {
+        arr[i][j] = Integer.parseInt(st.nextToken());
+        sum += arr[i][j];
+      }
+      Arrays.sort(arr[i]);
+      average[i] = Math.round((double) sum / N);
+    }
+    for (int i = 0; i < N; i++) {
+      long difference = Math.abs(average[i] - arr[i][0]);
+      int index = 0;
+      for (int j = 1; j < N; j++) {
+        if (difference >= Math.abs(average[i] - arr[i][j])) {
+          difference = Math.abs(average[i] - arr[i][j]);
+          index = j;
+        }
+      }
+      System.out.println(average[i] + " " + arr[i][index]);
+    }
+    return 0;
+  }
+}
