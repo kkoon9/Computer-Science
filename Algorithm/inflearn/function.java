@@ -1167,3 +1167,48 @@ class Question53 {
     return arr[N];
   }
 }
+
+/**
+ * @desc 진법으로 바뀐 값을 구하는 프로그램
+ * @param 정수 N, 진법 Base
+ * @return Base진법 N의 값
+ */
+class Question54 {
+  public String solution(int N, int Base) {
+    String answer = "";
+    Stack<String> st = new Stack<>();
+    while (N != 0) {
+      String element = String.valueOf(N % Base);
+      if (Base == 16) {
+        switch (element) {
+          case "10":
+            element = "A";
+            break;
+          case "11":
+            element = "B";
+            break;
+          case "12":
+            element = "C";
+            break;
+          case "13":
+            element = "D";
+            break;
+          case "14":
+            element = "E";
+            break;
+          case "15":
+            element = "F";
+            break;
+          default:
+            break;
+        }
+      }
+      st.push(element);
+      N /= Base;
+    }
+    while (!st.isEmpty()) {
+      answer += st.pop();
+    }
+    return answer;
+  }
+}
