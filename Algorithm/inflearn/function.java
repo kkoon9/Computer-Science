@@ -1062,3 +1062,34 @@ class Question48 {
     return 0;
   }
 }
+
+/**
+ * @desc 정면에서 본 블록의 모습과 오른쪽 측면에서 본 블록을 통해 블록의 최대 개수를 구하는 프로그램
+ * @param 정수 N, 정면에서 본 블록의 개수, 오른쪽 측면에서 본 블록의 개수
+ * @return 블록의 최대값
+ */
+class Question49 {
+  public int solution(int N) throws IOException {
+    final int FRONT = 2;
+    int answer = 0;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int[][] arr = new int[FRONT][N];
+    for (int i = 0; i < FRONT; i++) {
+      StringTokenizer st = new StringTokenizer(br.readLine());
+      for (int j = 0; j < N; j++) {
+        arr[i][j] = Integer.parseInt(st.nextToken());
+      }
+    }
+    for (int i = 0; i < N; i++) {
+      int height = arr[0][i];
+      for (int j = 0; j < N; j++) {
+        if (height > arr[1][j]) {
+          answer += arr[1][j];
+        } else {
+          answer += height;
+        }
+      }
+    }
+    return answer;
+  }
+}
