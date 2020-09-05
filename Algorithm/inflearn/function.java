@@ -976,3 +976,53 @@ class Question45 {
     return linkedList.get(0);
   }
 }
+
+/**
+ * @desc 상하좌우 모두 자신보다 낮은 높이를 가지면 봉우리가 된다. 봉우리의 개수를 구하는 프로그램
+ * @param 정수 N, 길이가 N인 2차원 배열
+ * @return 봉우리의 개수
+ */
+class Question47 {
+  int[] dx = { 0, 0, -1, 1 };
+  int[] dy = { 1, -1, 0, 0 };
+
+  public int solution(int N) throws IOException {
+    int answer = 0;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int[][] arr = new int[N + 2][N + 2];
+    for (int i = 0; i <= N; i++) {
+      arr[i][0] = 0;
+      arr[0][i] = 0;
+      arr[N + 1][i] = 0;
+      arr[i][N + 1] = 0;
+    }
+    for (int i = 1; i <= N; i++) {
+      StringTokenizer st = new StringTokenizer(br.readLine());
+      for (int j = 1; j <= N; j++) {
+        arr[i][j] = Integer.parseInt(st.nextToken());
+      }
+    }
+    for (int i = 1; i <= N; i++) {
+      for (int j = 1; j <= N; j++) {
+        if (IsPeaks(arr, i, j)) {
+          answer++;
+        }
+      }
+    }
+    return answer;
+  }
+
+  boolean IsPeaks(int[][] arr, int x, int y) {
+    boolean answer = true;
+    int peak = arr[x][y];
+    for (int i = 0; i < 4; i++) {
+      int nextX = x + dx[i];
+      int nextY = y + dy[i];
+      if (peak <= arr[nextX][nextY]) {
+        answer = false;
+        break;
+      }
+    }
+    return answer;
+  }
+}
