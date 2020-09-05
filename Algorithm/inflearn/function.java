@@ -1093,3 +1093,41 @@ class Question49 {
     return answer;
   }
 }
+
+/**
+ * @desc 가장 많은 오렌지가 열리는 영지를 구하는 프로그램
+ * @param 정수 N, 오렌지 나무 영지, 가질 수 있는 영지의 가로 세로 값
+ * @return 가장 많이 열리는 오렌지의 개수
+ */
+class Question50 {
+  public int solution(int N, int M, int H, int W) throws IOException {
+    int answer = Integer.MIN_VALUE;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int[][] arr = new int[N][M];
+    for (int i = 0; i < N; i++) {
+      StringTokenizer st = new StringTokenizer(br.readLine());
+      for (int j = 0; j < M; j++) {
+        arr[i][j] = Integer.parseInt(st.nextToken());
+      }
+    }
+    for (int i = 0; i < N - H; i++) {
+      for (int j = 0; j < M - W; j++) {
+        int sum = SumOfTerriTory(arr, i, j, i + H, j + W);
+        if (answer < sum) {
+          answer = sum;
+        }
+      }
+    }
+    return answer;
+  }
+
+  int SumOfTerriTory(int arr[][], int startI, int startJ, int H, int W) {
+    int sum = 0;
+    for (int i = startI; i < H; i++) {
+      for (int j = startJ; j < W; j++) {
+        sum += arr[i][j];
+      }
+    }
+    return sum;
+  }
+}
