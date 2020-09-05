@@ -1131,3 +1131,39 @@ class Question50 {
     return sum;
   }
 }
+
+/**
+ * @desc 소인수 2, 3, 5로만 이루어진 수를 Ugly Number라고 한다. N번째 Ugly Number를 구하는 프로그램
+ * @param 정수 N
+ * @return N번째 Ugly Number
+ */
+class Question53 {
+  public int solution(int N) {
+    final int MAX = 1500;
+    final int TWO = 2;
+    final int THREE = 3;
+    final int FIVE = 5;
+    int[] arr = new int[MAX + 1];
+    int p1, p2, p3;
+    arr[1] = p1 = p2 = p3 = 1;
+    for (int i = TWO; i <= N; i++) {
+      int p1UglyNumber = arr[p1] * TWO;
+      int p2UglyNumber = arr[p2] * THREE;
+      int p3UglyNumber = arr[p3] * FIVE;
+      int minUglyNumber = Math.min(Math.min(p1UglyNumber, p2UglyNumber), p3UglyNumber);
+      if (minUglyNumber == p1UglyNumber) {
+        p1++;
+        arr[i] = p1UglyNumber;
+      }
+      if (minUglyNumber == p2UglyNumber) {
+        p2++;
+        arr[i] = p2UglyNumber;
+      }
+      if (minUglyNumber == p3UglyNumber) {
+        p3++;
+        arr[i] = p3UglyNumber;
+      }
+    }
+    return arr[N];
+  }
+}
