@@ -1230,3 +1230,24 @@ class Question56 {
     Recursion(n, i + 1);
   }
 }
+
+/**
+ * @desc 재귀함수로 이진수 구현하는 프로그램
+ * @param 정수 N
+ * @return 10진수 N을 2진수로 출력
+ */
+class Question57 {
+  StringBuilder sb = new StringBuilder();
+
+  public String solution(int N) {
+    Recursion(N);
+    return sb.reverse().toString();
+  }
+
+  void Recursion(int n) {
+    if (n == 0)
+      return;
+    sb.append(n % 2);
+    Recursion(n / 2);
+  }
+}
