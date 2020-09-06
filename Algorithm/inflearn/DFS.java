@@ -77,3 +77,50 @@ class Question60 {
     dfs(val + 1);
   }
 }
+
+/**
+ * @desc 주어진 배열로 특정 수를 만들 수 있는 경우의 수를 구하는 프로그램
+ * @param 정수 N, 특정 수 M, 길이가 N인 배열
+ * @return 특정수를 만들 수 있는 경우의 수, 만들 수 없다면 -1을 출력
+ */
+class Question61 {
+  int depth;
+  int answer = 0;
+  int[] arr;
+  int[] visit;
+  int target;
+
+  public int solution(int N, int M) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer stringTokenizer = new StringTokenizer(br.readLine());
+    depth = N;
+    target = M;
+    arr = new int[N];
+    visit = new int[N];
+    for (int i = 0; i < N; i++) {
+      arr[i] = Integer.parseInt(stringTokenizer.nextToken());
+    }
+    dfs(0);
+    answer = answer == 0 ? -1 : answer;
+    return answer;
+  }
+
+  private void dfs(int val) {
+    if (val >= depth) {
+      int sum = 0;
+      for (int i = 0; i < depth; i++) {
+        sum += visit[i];
+      }
+      if (sum == target) {
+        answer++;
+      }
+      return;
+    }
+    visit[val] = arr[val];
+    dfs(val + 1);
+    visit[val] = -arr[val];
+    dfs(val + 1);
+    visit[val] = 0;
+    dfs(val + 1);
+  }
+}
