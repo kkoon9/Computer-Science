@@ -1212,3 +1212,21 @@ class Question54 {
     return answer;
   }
 }
+
+/**
+ * @desc 재귀함수 구현하는 프로그램
+ * @param 정수 N
+ * @return 1~N까지 출력
+ */
+class Question56 {
+  public void solution(int N) {
+    Recursion(N, 1);
+  }
+
+  void Recursion(int n, int i) {
+    System.out.print(i + " ");
+    if (i == n)
+      return;
+    Recursion(n, i + 1);
+  }
+}
