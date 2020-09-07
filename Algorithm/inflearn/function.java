@@ -1251,3 +1251,29 @@ class Question57 {
     Recursion(n / 2);
   }
 }
+
+/**
+ * @desc 인접행렬을 구하는 프로그램
+ * @param 정수 N, 거리 비용
+ * @return 인접행렬
+ */
+class Question63 {
+  public void solution(int N, int M) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer stringTokenizer;
+    int[][] matrix = new int[N + 1][N + 1];
+    for (int i = 1; i <= M; i++) {
+      stringTokenizer = new StringTokenizer(br.readLine());
+      int a = Integer.parseInt(stringTokenizer.nextToken());
+      int b = Integer.parseInt(stringTokenizer.nextToken());
+      int distance = Integer.parseInt(stringTokenizer.nextToken());
+      matrix[a][b] = distance;
+    }
+    for (int i = 1; i <= N; i++) {
+      for (int j = 1; j <= N; j++)
+        System.out.print(matrix[i][j] + " ");
+      System.out.println();
+
+    }
+  }
+}
