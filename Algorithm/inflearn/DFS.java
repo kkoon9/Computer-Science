@@ -124,3 +124,46 @@ class Question61 {
     dfs(val + 1);
   }
 }
+
+/**
+ * @desc 경로 탐색
+ * @param 정수 N, 경로의 개수 M, 경로를 담은 길이가 M인 배열
+ * @return 경로탐색
+ */
+class Question64 {
+  boolean[][] matrix;
+  boolean[] visit;
+  int answer = 0;
+  int depth;
+
+  public int solution(int N, int M) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer stringTokenizer;
+    matrix = new boolean[N + 1][N + 1];
+    visit = new boolean[N + 1];
+    depth = N;
+    for (int i = 1; i <= M; i++) {
+      stringTokenizer = new StringTokenizer(br.readLine());
+      int a = Integer.parseInt(stringTokenizer.nextToken());
+      int b = Integer.parseInt(stringTokenizer.nextToken());
+      matrix[a][b] = true;
+    }
+    visit[1] = true;
+    DFS(1, 1);
+    return answer;
+  }
+
+  void DFS(int val, int count) {
+    if (val == depth || count == depth) {
+      answer++;
+      return;
+    }
+    for (int i = 1; i <= depth; i++) {
+      if (!matrix[val][i] || visit[i])
+        continue;
+      visit[i] = true;
+      DFS(i, count + 1);
+      visit[i] = false;
+    }
+  }
+}
