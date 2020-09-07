@@ -213,3 +213,48 @@ class Question65 {
     }
   }
 }
+
+/**
+ * @desc 가중치 최소 비용 경로를 구하는 프로그램
+ * @param 정수 N, 경로의 개수 M, 경로를 담은 길이가 M인 배열
+ * @return 최소 비용
+ */
+class Question67 {
+  int[][] matrix;
+  boolean[] visit;
+  int answer = Integer.MAX_VALUE;
+  int depth;
+
+  public int solution(int N, int M) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer stringTokenizer;
+    matrix = new int[N + 1][N + 1];
+    visit = new boolean[N + 1];
+    depth = N;
+    for (int i = 1; i <= M; i++) {
+      stringTokenizer = new StringTokenizer(br.readLine());
+      int a = Integer.parseInt(stringTokenizer.nextToken());
+      int b = Integer.parseInt(stringTokenizer.nextToken());
+      int c = Integer.parseInt(stringTokenizer.nextToken());
+      matrix[a][b] = c;
+    }
+    DFS(1, 1, 0);
+    return answer;
+  }
+
+  void DFS(int val, int count, int sum) {
+    if (val == depth || count == depth) {
+      if (sum < answer) {
+        answer = sum;
+      }
+      return;
+    }
+    for (int i = 1; i <= depth; i++) {
+      if (matrix[val][i] == 0 || visit[i])
+        continue;
+      visit[i] = true;
+      DFS(i, count + 1, sum + matrix[val][i]);
+      visit[i] = false;
+    }
+  }
+}
