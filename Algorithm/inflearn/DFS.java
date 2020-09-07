@@ -167,3 +167,49 @@ class Question64 {
     }
   }
 }
+
+/**
+ * @desc 미로 탐색
+ * @param 정수 N, 경로의 개수 M, 경로를 담은 길이가 M인 배열
+ * @return 미로 탐색
+ */
+class Question65 {
+  final int SIZE = 7;
+  int[][] matrix = new int[SIZE + 1][SIZE + 1];
+  boolean[][] visit = new boolean[SIZE + 1][SIZE + 1];
+  int[] dx = { 0, 0, 1, -1 };
+  int[] dy = { 1, -1, 0, 0 };
+  int answer = 0;
+
+  public int solution() throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer stringTokenizer;
+    for (int i = 1; i <= SIZE; i++) {
+      stringTokenizer = new StringTokenizer(br.readLine());
+      for (int j = 1; j <= SIZE; j++) {
+        matrix[i][j] = Integer.parseInt(stringTokenizer.nextToken()) == 1 ? 0 : 1;
+      }
+    }
+    visit[1][1] = true;
+    DFS(1, 1);
+    return answer;
+  }
+
+  void DFS(int x, int y) {
+    if (x == SIZE && y == SIZE) {
+      answer++;
+      return;
+    }
+    for (int i = 0; i < 4; i++) {
+      int nextX = dx[i] + x;
+      int nextY = dy[i] + y;
+      if (nextX <= 0 || nextX > SIZE || nextY <= 0 || nextY > SIZE)
+        continue;
+      if (matrix[nextX][nextY] == 0 || visit[nextX][nextY])
+        continue;
+      visit[nextX][nextY] = true;
+      DFS(nextX, nextY);
+      visit[nextX][nextY] = false;
+    }
+  }
+}
