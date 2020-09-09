@@ -926,3 +926,33 @@ public class Main {
   - Map 인터페이스의 한 종류로 ( "Key", value) 로 이뤄져 있다.
   - key 값을 중복이 불가능 하고 value는 중복이 가능. value에 null값도 사용 가능하다.
   - 멀티쓰레드에서 동시에 HashMap을 건드려 Key - value값을 사용하면 문제가 될 수 있다. 멀티쓰레드에서는 HashTable을 쓴다.
+
+## 13. **여러 기준으로 생각하자!**
+
+[다리를 지나는 트럭](https://programmers.co.kr/learn/courses/30/lessons/42583)
+
+- Input
+  - bridge_length : int, 다리의 길이(1 ~ 10000)
+  - weight : int, 다리가 견딜 수 있는 무게(1~10000)
+  - truck_weights : array, 트럭별 무게(길이 : 1~10000, 무게 : 1 ~ weight)
+- Want
+  - 모든 트럭이 다리를 건너는데 걸리는 최소 시간
+- Point
+  - 트럭에 초점이 아닌 **시간에 초점**으로 잡고 풀어보자.
+
+```java
+while (!q2.isEmpty()) {
+  for (Truck truck : q2) {
+    truck.time--;
+  }
+  if (q2.peek().time <= 0) {
+    tot_weight -= q2.poll().weight;
+  }
+
+  if (!q.isEmpty() && tot_weight + q.peek().weight <= weight) {
+    tot_weight += q.peek().weight;
+    q2.offer(q.poll());
+  }
+  time++;
+}
+```
