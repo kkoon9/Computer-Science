@@ -956,3 +956,14 @@ while (!q2.isEmpty()) {
   time++;
 }
 ```
+
+## 14. **플로이드 와샬**
+
+- 변의 가중치가 음이거나 양인 가중 그래프에서 **최단 경로들을 찾는** 알고리즘
+  1. 연결되지 않은 인덱스 - 무한대로 초기화
+  2. 노드들 연결하기
+  3. 최소 비용을 가지는 배열로 초기화
+
+> 대표 문제
+
+- [플로이드](https://github.com/kkoon9/Computer-Science/blob/master/Algorithm/Floyd/P11404.java)
