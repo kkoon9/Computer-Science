@@ -11,12 +11,12 @@ import java.util.*;
 
 public class Main {
   public static void main(String[] args) throws IOException {
-    P15650();
+    P15649();
   }
 
   static int N, M;
 
-  static void P15650() throws IOException {
+  static void P15649() throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
     N = Integer.parseInt(st.nextToken());
