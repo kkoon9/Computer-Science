@@ -1,7 +1,4 @@
 
-/**
- * @포인트 Deque
- */
 import java.io.*;
 import java.util.*;
 
