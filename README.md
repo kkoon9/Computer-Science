@@ -50,3 +50,4 @@ description : 문제 내용을 명시한 README.md
 | tree         | 트리 구조               |
 | unique       | 유일한 값들의 집합      |
 | twopoint     | 투 포인터               |
+| heap         | 힙(우선순위 큐)         |
